@@ -13,7 +13,7 @@ class CEfficientNet(nn.Module):
             self.features = EfficientNet.from_name(model_name)
         self.features._conv_stem.stride = (1, 1)
         fc_features = self.features._fc.in_features  
-        self.features._fc = nn.Linear(fc_features, 10)  
+        self.features._fc = nn.Linear(fc_features, num_classes)  
     
     def forward(self, x):
         out = self.features(x)
